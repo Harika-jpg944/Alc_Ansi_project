@@ -1,4 +1,3 @@
-#Hello
 ---
 - name: Play to Install httpd package
   hosts: sapadm
