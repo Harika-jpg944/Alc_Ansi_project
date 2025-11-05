@@ -1,4 +1,5 @@
-#we are in feature branch
+#we are in main branch
+>>>>>>> main
 ---
 - name: My First Playbook
   hosts: devops
