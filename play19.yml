@@ -1,0 +1,12 @@
+---
+- name: demonstrate variables in ansible
+# get varaibles defined in the file
+  hosts: 
+  
+   sapadm #group i will declare them in the directory with name in group_vars
+  
+  tasks:
+   - name: print variable values
+     debug:
+      msg: "os is: {{os}} and color is {{color}}"   
+...

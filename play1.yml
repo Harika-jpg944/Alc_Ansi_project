@@ -1,8 +1,12 @@
----
+#we are in main branch
+>>>>>>> main
+#we need fastforward merge
+#---
 - name: My First Playbook
   hosts: devops
   become: true 
   become_user: root
+  #hello there this is harika
   tasks:
    - name: Create User
      user:
@@ -10,3 +14,5 @@
       password: $6$kdlafklakdj$jVBXr3pp3MyLrgxpTrdJJyGg6oiHyEKOA/Hk0XktvUZJExw6upj736L0Zgk6aLCJdH7yVtYTQVF/boZqubKNG/
       state: present
 ...
+
+#ABCD

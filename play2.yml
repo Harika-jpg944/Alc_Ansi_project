@@ -1,4 +1,6 @@
----
+#we are in main branch
+>>>>>>> main
+#---
 - name: Play to create a group and then user
   hosts: devops
   become: true
