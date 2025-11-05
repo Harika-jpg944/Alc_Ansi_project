@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-#we are in main branch
-=======
->>>>>>> 89b41af366173d84733fd8a302bd7d68862e054b
+##we are in main branch
 ---
 - name: Play to Install httpd package
   hosts: sapadm
