@@ -1,7 +1,5 @@
-#Hello
 #we are in main branch
 ---
->>>>>>> main
 - name: Play to Install httpd package
   hosts: sapadm
   become: true
