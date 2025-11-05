@@ -1,5 +1,5 @@
-#we are in main branch
-#---
+#we need fast forward now
+
 - name: Demonstrate ansible variables
   hosts: localhost 
   vars: 
