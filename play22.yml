@@ -1,0 +1,27 @@
+---
+- name: Append supplementary group to existing user
+  hosts: localhost
+  become: yes
+
+  vars_prompt:
+  - name: supp_group
+    prompt: "Enter supplementary group name"
+    private: no
+
+  - name: username
+    prompt: "Enter existing username"
+    private: no
+
+  tasks:
+  - name: Ensure the supplementary group exists
+    group:
+      name: "{{ supp_group }}"
+      state: present
+
+  - name: Add existing user to the supplementary group
+    user:
+      name: "{{ username }}"
+      groups: "{{ supp_group }}"
+      append: yes
+...
+#End      
