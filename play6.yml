@@ -1,9 +1,4 @@
-#single play
-#play6
-#---
-# A single playbook can contain multiple plays.
-# Below demonstrate the same
-
+--
 - name: play1 for installing http and https
   become: true
   hosts: localhost
