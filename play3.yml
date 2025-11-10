@@ -14,7 +14,6 @@
     - name: Task to install httpd package
       yum:
         name: httpd
-        
         state: latest
 
     - name: Task to add the port in the firewall
