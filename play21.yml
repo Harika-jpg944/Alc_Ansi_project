@@ -21,7 +21,7 @@
   - name: Create User 
     user:
       name: "{{ username }}"
-      uid: "{{ uid }}"
+      uid: "{{ uid | int }}"
       comment: "{{ comment }}"
       shell: "{{ shell }}"
       state: present
