@@ -8,7 +8,7 @@
    - name: Create User
      user:
       name: alc-users-harika
-      password: $6$kdlafklakdj$jVBXr3pp3MyLrgxpTrdJJyGg6oiHyEKOA/Hk0XktvUZJExw6upj736L0Zgk6aLCJdH7yVtYTQVF/boZqubKNG/
+      password: ansible
       state: present
 ...
 
