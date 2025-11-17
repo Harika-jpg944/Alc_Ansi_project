@@ -5,7 +5,7 @@
   tasks:
   - name: insert line after the match 
     lineinfile:
-      path: /home/ansible/playbook
+      path: /home/ansible/playbook/names.txt
       line: "Mahesh is here"
       insertbefore: ^likitha
 ...
