@@ -1,7 +1,4 @@
-#we are in main branch
->>>>>>> main
-#we need fastforward merge
-#---
+---
 - name: My First Playbook
   hosts: devops
   become: true 
