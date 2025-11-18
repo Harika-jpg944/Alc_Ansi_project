@@ -1,5 +1,4 @@
-#we are in feature branch
-#---
+---
 - name: Demonstrate ansible variables
   hosts: localhost
 
@@ -11,4 +10,4 @@
       debug:
         msg: "The Value is: {{ color }}"
 ...
-# End
+
