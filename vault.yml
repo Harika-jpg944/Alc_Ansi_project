@@ -9,5 +9,3 @@
      - name: Show password from vault
        debug:
          msg: "The password is {{ password }}"
-...
-~
