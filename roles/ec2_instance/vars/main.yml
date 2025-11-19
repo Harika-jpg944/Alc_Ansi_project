@@ -1,0 +1,9 @@
+---
+# vars file for roles/ec2_instance
+
+region: ap-southeast-2
+instance_type: t3.micro
+ami_id: ami-038013fbee7451346
+security_group: sg-0dca5c4bf6f9f0801
+key_name: Sydneykey
+
