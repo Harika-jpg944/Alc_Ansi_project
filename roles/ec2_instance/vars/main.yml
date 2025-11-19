@@ -6,4 +6,5 @@ instance_type: t3.micro
 ami_id: ami-038013fbee7451346
 security_group: sg-0dca5c4bf6f9f0801
 key_name: Sydneykey
+launch_template: lt-032897422418ce4cc
 
