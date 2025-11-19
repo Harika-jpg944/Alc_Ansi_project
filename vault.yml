@@ -4,9 +4,10 @@
    become: true
    gather_facts: false
    vars_files:
-     - Alc_Ansi_project/playbook/vault.yml
+     - vars_files/secure-info.yml
    tasks:
      - name: Show password from vault
        debug:
          msg: "The password is {{ password }}"
 ...
+~
