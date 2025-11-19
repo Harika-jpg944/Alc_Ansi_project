@@ -1,0 +1,15 @@
+---
+- name: My First Playbook
+  hosts: localhost
+  become: true 
+  become_user: root
+  #hello there this is harika
+  tasks:
+   - name: Create User
+     user:
+      name: alc-users-harika
+      password: ansible
+      state: present
+...
+
+#ABCD
