@@ -7,7 +7,7 @@
   vars:
     region: "ap-southeast-2"
     vpc_id: "vpc-050aa8023d1a61857"
-    keypair: "Sydenykey"
+    keypair: "Sydneykey"
     instance_type: "t3.micro"
     ami_id: "ami-038013fbee7451346"
     sg_name: "ansible-sg"
