@@ -1,0 +1,23 @@
+---
+- name: Tag existing EC2 instances
+  hosts: localhost
+  connection: local
+
+  vars:
+    region: "ap-southeast-2"
+    instance_ids:
+      - "i-0a1dceecfc4857738"
+      - "i-0535c3b2d6f4cc6e9"
+
+  tasks:
+    - name: Add Tags to EC2 Instances
+      amazon.aws.ec2_tag:
+        region: "{{ region }}"
+        resource: "{{ item }}"
+        state: present
+        tags:
+          Name: "Ansible-Server"
+          Owner: "Harika"
+          Project: "Patching"
+      loop: "{{ instance_ids }}"
+
