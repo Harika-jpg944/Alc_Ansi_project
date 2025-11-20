@@ -5,7 +5,7 @@
   vars:
     OS: linux 
   vars_files:
-     - /home/ansible/playbook/vars.txt/myvars.yml
+     - /home/ansible/playbook/vars_files/myvars.yml1
   tasks:
      - name: print variable values
        debug:

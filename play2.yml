@@ -1,5 +1,4 @@
-#we are in main branch
-#---
+---
 - name: Play to create a group and then user
   hosts: devops
   become: true
@@ -18,5 +17,5 @@
       group: alc-user-harika 
       comment:  adding user to group
       state: present
-      password: $6$kdlafklakdj$jVBXr3pp3MyLrgxpTrdJJyGg6oiHyEKOA/Hk0XktvUZJExw6upj736L0Zgk6aLCJdH7yVtYTQVF/boZqubKNG/
+      password: ansible
 ...
