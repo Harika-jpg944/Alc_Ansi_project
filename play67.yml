@@ -1,0 +1,16 @@
+---
+- name: Install multiple packages
+  hosts: localhost
+  become: true
+  tasks:
+  - name: Install packages 
+    yum: 
+     name: "{{item}}"
+     state: present 
+    loop:
+     - vim
+     - git
+     - wget
+     - curl
+...
+#End

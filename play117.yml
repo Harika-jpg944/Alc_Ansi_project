@@ -1,0 +1,13 @@
+--- 
+- name: 
+  hosts: localhost
+  become: true
+  tasks: 
+   - name:
+     command: blkid -o value -s TYPE /dev/logsvg/swaplv01
+     register: out
+     ignore_errors: true 
+   - name: 
+     debug: 
+      msg: "{{out.stdout}}"
+     when: out.stdout == "swap" 

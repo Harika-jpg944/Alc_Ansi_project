@@ -1,0 +1,33 @@
+#setting user attributes management
+#set user attributes such as shell, home directory, aging policy, and modify existing user attributes
+--- 
+- name: Set user attributes
+  hosts: localhost 
+  become: true 
+  tasks: 
+    - name: create a group 
+      group: 
+       name: fusionex
+       state: present
+    - name: set user attributes such as shell
+      ansible.builtin.user:
+        name: alclabs 
+        group: fusionex 
+        shell: /bin/bash
+        create_home: yes
+         
+
+    - name: set user attributes such as aging policies 
+      ansible.builtin.user:
+        name: alclabs 
+        password_expire_max: 30     # max days before password change
+        password_expire_min: 15     # min days before password change
+        password_expire_warn: 7     # warn me before 7 days before password expiry
+
+    - name: Modify existing user 
+      ansible.builtin.user:
+        name: alclabs 
+        shell: /bin/ksh
+        home: /home/alclabs
+        state: present 
+...

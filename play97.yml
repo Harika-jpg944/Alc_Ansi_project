@@ -1,0 +1,39 @@
+--- 
+- name: Demonstrate ansible tags
+  hosts: localhost 
+  become: true
+  tasks: 
+   - name: Task1
+     debug:
+      msg: "Task1 - Red Planet"
+     tags: mars
+   - name: Task2
+     debug:
+      msg: "Task2 - venus Planet"
+     tags: mirs
+   - name: Task3
+     debug:
+      msg: "Task3 - Jupiter Planet"
+     tags: mosaic
+   - name: Task4
+     debug:
+      msg: "Task4 - Earth Planet"
+     tags: moon
+   - name: Task5
+     debug:
+      msg: "Task5 - Green Planet"
+     tags: mars
+      - blue 
+      - green
+... 
+#run this playbook with below options
+# ansible-playbook --tags=mist play92.yml
+# ansible-playbook --t=mist play92.yml
+# ansible-playbook --tags="mist,blue" play92.yml
+# ansible-playbook --tags="mist,green" play92.yml
+# ansible-playbook --skip-tags="mist,green" play92.yml
+# ansible-playbook --skip-tagsv"mist,green" play92.yml
+# ansible-playbook -t green play92.yml
+# ansible-playbook --list-tags play92.yml
+# ansible-playbook --step play92.yml
+#End of the play 

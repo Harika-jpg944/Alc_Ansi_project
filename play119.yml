@@ -1,0 +1,30 @@
+#user and group management
+#create a new user 
+#create a group 
+#delete an existing user 
+#delete an existing group 
+--- 
+- name: Creating a user and Group management
+  hosts: localhost 
+  become: true
+  become_user: root 
+  tasks: 
+   - name: create a new user 
+     user:
+      name: alclabs
+      state: present
+   - name: create a group 
+     group: 
+      name: fusionex
+      state: present
+   - name: Delete an existing user 
+     user:  
+      name: alclabs 
+      state: absent 
+   - name: Delete an existing group 
+     group: 
+      name:  fusionex 
+      state: absent  
+...
+
+

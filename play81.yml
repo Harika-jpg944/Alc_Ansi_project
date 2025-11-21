@@ -1,0 +1,44 @@
+---
+- name: Play to read a CSV file and create users
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Read the CSV file
+      read_csv:
+        path: /home/ansible/playbooks/user_list.csv
+      register: res
+
+    - name: Print parsed CSV content
+      debug:
+        var: res.list
+
+    - name: Create groups from CSV
+      group:
+        name: "{{ item.groups }}"
+        state: present
+      loop: "{{ res.list }}"
+
+    - name: Create users from CSV
+      user:
+        name: "{{ item.uname }}"
+        groups: "{{ item.groups }}"
+        comment: "{{ item.first_name }} {{ item.last_name }}"
+        uid: "{{ item.uid }}"
+        password: "{{ item.password | password_hash('sha512') }}"
+        update_password: on_create
+        append: yes
+        shell: /bin/bash
+        create_home: yes
+      loop: "{{ res.list }}"
+
+    - name: Verify created users
+      command: id {{ item.uname }}
+      register: user_check
+      ignore_errors: yes
+      loop: "{{ res.list }}"
+
+    - name: Show verification results
+      debug:
+        var: user_check.results
+... 
+#End

@@ -1,0 +1,12 @@
+--- 
+- name: play to demonstarate jinja2 template
+  hosts: localhost 
+  become: true 
+  tasks: 
+   - name: Use template to generate /etc/motd
+     template:
+      src: templates/motd.j2
+      dest: /etc/motd
+... 
+#End
+   

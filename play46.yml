@@ -1,0 +1,15 @@
+---
+- name: Create Ansible Vault that stores MYSQL root password
+  hosts: localhost
+  become: true 
+  remote_user: ansible
+  become_user: root
+  gather_facts: no
+  vars_files:
+   - vars1/mysql.yml
+  tasks:
+    - name: Print MySQL root password
+      ansible.builtin.debug:
+        msg: "MySQL root password is: {{ 123 }}"
+...	
+#End 

@@ -1,0 +1,15 @@
+---
+- name: Demonstrate include_vars
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Include variables from file
+      ansible.builtin.include_vars: vars1/inclvar.yml
+
+    - name: Install packages using variables
+      ansible.builtin.yum:
+        name:
+          - "{{ pkg_name1 }}"
+          - "{{ pkg_name2 }}"
+        state: present
+...

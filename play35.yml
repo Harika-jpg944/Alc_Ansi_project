@@ -1,0 +1,25 @@
+---
+- name: Create directory on all servers
+  hosts: all
+  become: true
+  tasks:
+    - name: Create /opt/ansible_test
+      file:
+        path: /opt/ansible_test
+        state: directory
+        mode: '0755'
+
+- name: Print web group variables
+  hosts: web
+  tasks:
+    - name: Show web server port
+      debug:
+        msg: "Web server port is {{ http_port }}"
+
+- name: Print db group variables
+  hosts: db
+  tasks:
+    - name: Show database port
+      debug:
+        msg: "Database port is {{ db_port }}"
+...

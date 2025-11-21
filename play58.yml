@@ -1,0 +1,11 @@
+---
+- name: play to reboot remote servers 
+  #hosts: localhost
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: Reboot remote servers
+#Module Name is Reboot
+     reboot:
+...
+#End of the play 

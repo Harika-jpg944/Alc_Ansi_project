@@ -1,0 +1,19 @@
+#password management
+#setting password for user 
+#change/reset the user password 
+--- 
+- name: password management 
+  hosts: localhost 
+  become: true 
+  tasks: 
+   - name: set a password for the user alclabs 
+     user: 
+      name: alclabs
+      password: "{{ 'passwordtest@123!' | password_hash('sha512') }}"
+   - name: changing or resetting the user password 
+     user: 
+      name: alclabs 
+      password: "{{ 'NewPasswordpass@123!' | password_hash('sha512') }}" 
+      update_password: always 
+... 
+

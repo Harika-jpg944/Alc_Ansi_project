@@ -1,0 +1,16 @@
+---
+- name: Install latest version for all the servers
+  hosts: all
+  become: true
+  tasks:
+    - name: Ensure latest version of httpd is installed
+      yum:
+        name: sshd
+        state: latest
+
+    - name: Ensure httpd service is started and enabled
+      service:
+        name: sshd 
+        state: started
+        enabled: yes
+...

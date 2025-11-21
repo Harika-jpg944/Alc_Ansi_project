@@ -1,0 +1,11 @@
+---
+- name: print hostvariables using magic variable for specific host
+  hosts: mahesh.alclabs.in
+  tasks:
+  - name: play to print specific hostvars
+    debug:
+     var: hostvars['mahesh.alclabs.in']['user_name']
+  - name: play to print specific hostvars
+    debug:
+     var: hostvars['mahesh.alclabs.in']['ansible_hostname']
+#hostvars: Dictionary containing variables for all hosts in  the inventory

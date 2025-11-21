@@ -1,0 +1,17 @@
+---
+- name: copy multiples files with a loop
+  hosts: [192.168.1.51, 192.168.1.52]
+  become: yes
+  vars:
+   f_list:
+    - orig: /etc/httpd/conf/httpd.conf
+      destn: /var/tmp/tmpd.conf
+    - orig: /var/www/html/index.html
+      destn: /var/tmp/index.html
+  tasks:
+   - name: copy files
+     copy: 
+      src: "{{item.orig}}"
+      dest: "{{item.destn}}"
+     loop: "{{f_list}}"
+...
