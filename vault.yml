@@ -13,12 +13,12 @@
   hosts: localhost
   become: true
   vars_files:
-   - secure-info.yml
+   - vars_files/vault.password
   tasks:
    - name: Create users
      user:
-      name: "{{item}}"
-      password: "{{pass|password_hash('sha512')}}"
+      name: testuser
+      password: "{{password | password_hash('sha512')}}"
       update_password: on_create
       state: present
      loop:
