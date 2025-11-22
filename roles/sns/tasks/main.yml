@@ -14,7 +14,7 @@
 # Publish message to SNS
 - name: Publish SNS message
   community.aws.sns:
-    topic: "{{ sns_topic.sns_arn }}"
+    topic: "{{ sns_topic.sns_topic.topic_arn }}"
     msg: "{{ sns_message }}"
     subject: "Jenkins Notification"
     region: "{{ aws_region }}"
