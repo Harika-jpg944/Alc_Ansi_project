@@ -1,0 +1,21 @@
+---
+# Create SNS Topic
+- name: Create SNS topic
+  community.aws.sns_topic:
+    name: "{{ sns_topic_name }}"
+    region: "{{ aws_region }}"
+  register: sns_topic
+
+# Debug SNS topic output to inspect returned keys
+- name: Debug sns_topic output
+  debug:
+    var: sns_topic
+
+# Publish message to SNS
+- name: Publish SNS message
+  community.aws.sns:
+    topic: "{{ sns_topic.sns_topic.topic_arn }}"
+    msg: "{{ sns_message }}"
+    subject: "Jenkins Notification"
+    region: "{{ aws_region }}"
+

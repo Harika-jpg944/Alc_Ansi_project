@@ -1,0 +1,15 @@
+---
+- name: loop with with_items. this is older syntax but still valid 
+  hosts: localhost
+  become: true
+  tasks:
+   - name: create directories 
+     file:
+      path: "{{item}}"
+      state: directory 
+     with_items:
+      - /opt/mathematics
+      - /opt/biology
+      - /opt/business studies
+...
+#End 

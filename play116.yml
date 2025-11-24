@@ -1,0 +1,42 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for linux-lvm
+lvm_disk: ["/dev/sdb"]
+lvm_vg: vg_data 
+lvm_lv: lv_data 
+lvm_size: 4G 
+lvm_fs: xfs 
+lvm_mount: /datafs01
+lvm_swap_lv: lvm_swap_
+lvm_swap_size: 2G
+
+---
+- name: Create Physical volume
+  community.general.parted:
+   device: "{{item}}"
+   label: gpt 
+   state: present 
+  loop: "{{lvm_disks}}"
+
+- name: Create a volume Group 
+  community.general.lvg:
+   vg: "{{lvm_vg}}"
+   pvs: "{{lvm_disks|join(',')}}"
+   
+- name: Create a Logical Volume 
+  community.general.lvol: 
+  vg: "{{lvm_vg}}"
+  lv: "{{lvm_lv}}"
+  size: "{{lvm_size}}"
+
+- name: Create a Filesystem
+  ansible.builtin.filesystem:
+   fstype: "{{lvm_fs}}"
+   dev: "/dev/{{lvm_vg}}/{{lvm_lv}}"
+
+- name: Mount the Filesystem
+  ansible.posix.mount:
+   path: "{{lvm_mount}}"
+   src: "/dev/{{lvm_vg}}/{{lvm_lv}}"
+   fstype: "{{lvm_fs}}"
+   state: mounted 

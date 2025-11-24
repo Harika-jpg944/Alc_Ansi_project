@@ -1,0 +1,24 @@
+#Generating existing key pairs for the user 
+#Configure authorized keys for secure SSH access
+--- 
+- name: SSH Key management 
+  hosts: localhost
+  become: true  
+  tasks: 
+   - name: Generating existing key pair for the user
+     community.crypto.openssh_keypair:
+     path: "/home/ansible/alclabs/.ssh/id_rsa"
+     owner: alclabs 
+     group: alclabs 
+     type: rsa 
+     size: 2048
+     mode: '0600'
+   - name: configure authorized key for alclabs
+     ansible.posix.authorized_key: 
+     user: alclabs 
+     state: present 
+     key: "{{ lookup('file', '/home/ansible/alclabs/.ssh/id_rsa.pub') }}" 
+... 
+# Generating existing key pairs for the user 
+# Configure authorized keys for secure SSH access
+

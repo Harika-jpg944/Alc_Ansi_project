@@ -1,0 +1,14 @@
+---
+- name: Runs the uptime command registers the output and prints the results using debug
+  hosts: localhost
+  become: no
+  tasks:
+    - name: Run uptime command
+      command: uptime
+      register: uptime_output
+
+    - name: Show uptime result
+      debug:
+        msg: "Uptime on {{ inventory_hostname }}: {{ uptime_output.stdout }}"
+...
+#End

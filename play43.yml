@@ -1,0 +1,13 @@
+---
+- name: Check available space in root directory
+  hosts: localhost
+  tasks:
+    - name: Run df -h command
+      ansible.builtin.command:
+        cmd: df -h /
+      register: df
+    - name: Display available space in root directory
+      ansible.builtin.debug:
+        msg: "Available space in : {{ df['stdout_lines'] }}"
+...
+#End 

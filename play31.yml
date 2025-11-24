@@ -1,0 +1,21 @@
+---
+- name: Create user with vault-encrypted password
+  hosts: localhost
+  gather_facts: no
+  become: yes
+
+  vars_files:
+  - vars1/pass1.yml # Encrypted file
+
+  vars:
+    username: db101
+    groupname: Fusionex
+
+  tasks:
+  - name: Create {{ username }} with secondary group {{ groupname }}
+    ansible.builtin.user:
+      name: "{{ username }}"
+      password: "{{ password | password_hash('sha512') }}"
+      groups: "{{ groupname }}"
+      append: yes
+      state: present

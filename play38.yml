@@ -1,0 +1,14 @@
+---
+- name: Define a variable for a package name nginx
+  hosts: localhost
+  become: true
+  gather_facts: no
+  vars: 
+    pack: nginx
+  tasks:
+    - name: Install package from variable
+      ansible.builtin.yum:
+        name: "{{ pack }}"
+        state: present
+...
+#End 

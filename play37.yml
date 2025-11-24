@@ -1,0 +1,13 @@
+--- 
+- name: Creating a host variable file user and password by using debug 
+  hosts: localhost
+  become: true
+  gather_facts: no 
+  tasks:
+  - name: Display ansible_user and ansible_password 
+    debug:
+      msg: "User: {{ ansible_user }}, Password: {{ ansible_password }}"
+  vars_files:
+    - host_vars/hostname.yml
+...
+#End

@@ -1,0 +1,14 @@
+#sudo privilege
+#Add the user to the sudoers list using templates
+--- 
+- name: Adding sudo privileges  
+  hosts: localhost 
+  become: true 
+  tasks: 
+   - name: adding user to sudoers  
+     template: 
+      src: templates/alclabs_sudoers.j2
+      dest: /etc/sudoers.d/alclabs 
+      mode: '0440'
+   - name: 
+...

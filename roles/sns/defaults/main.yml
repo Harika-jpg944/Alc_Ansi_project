@@ -1,0 +1,7 @@
+---
+# defaults file for sns
+aws_region: "ap-southeast-2"
+sns_topic_name: "jenkins-notification-topic"
+sns_message: "SNS triggered from Ansible playbook!"
+sns_subscription_email: "your-email@example.com"
+

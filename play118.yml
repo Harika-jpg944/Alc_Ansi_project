@@ -1,0 +1,11 @@
+---
+- name: LVM and Swap Setup
+  hosts: localhost 
+  vars:
+    lvm_swap_size: 2G
+
+  tasks:
+    - name: Show swap size
+      debug:
+        var: lvm_swap_size
+ 

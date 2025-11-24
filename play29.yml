@@ -1,0 +1,8 @@
+---
+- name: Demonstrate Ansible facts
+  hosts: localhost
+  gather_facts: yes   # Make sure facts are collected
+  tasks:
+    - name: Print ansible fact variables
+      debug:
+        msg: "The kernel is {{ ansible_facts['kernel'] }}, the IPv4 address is {{ ansible_facts['default_ipv4']['address'] }}, and the server is {{ ansible_facts['hostname'] }}"

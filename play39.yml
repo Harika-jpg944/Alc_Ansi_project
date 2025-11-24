@@ -1,0 +1,15 @@
+---
+- name: Defining a variable in for a service name (firewalld)
+  hosts: all
+  become: true
+  gather_facts: no
+  vars_files:
+   - /home/ansible/playbooks/group_vars/all.yml
+  tasks:
+   - name: service is enabled and started
+     ansible.builtin.service:
+      name: "{{ pack }}"
+      state: started
+      enabled: true
+...
+#End 

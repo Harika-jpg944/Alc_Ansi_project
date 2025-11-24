@@ -1,0 +1,64 @@
+---
+- name: Create Physical volume
+  community.general.parted:
+   device: "{{item}}"
+   label: gpt 
+   state: present 
+  loop: "{{lvm_disks}}"
+
+- name: Create a volume Group 
+  community.general.lvg:
+   vg: "{{lvm_vg}}"
+   pvs: "{{lvm_disks|join(',')}}"
+   
+- name: Create a Logical Volume 
+  community.general.lvol: 
+  vg: "{{lvm_vg}}"
+  lv: "{{lvm_lv}}"
+  size: "{{lvm_size}}"
+
+- name: Create a Filesystem
+  ansible.builtin.filesystem:
+   fstype: "{{lvm_fs}}"
+   dev: "/dev/{{lvm_vg}}/{{lvm_lv}}"
+
+- name: Mount the Filesystem
+  ansible.posix.mount:
+   path: "{{lvm_mount}}"
+   src: "/dev/{{lvm_vg}}/{{lvm_lv}}"
+   fstype: "{{lvm_fs}}"
+   state: mounted 
+
+--- 
+- name: Extend logical volume
+  community.general.lvol:
+   vg: "{{lvm_vg}}"
+   lv: "{{lvm_lv}}"
+   size: +1G
+
+
+- name: Unmount the Filesystem
+  ansible.posix.mount: 
+   path: "{{lvm_mount}}"
+   state: unmounted
+
+- name: Remove Logical Volume 
+  
+--- 
+- name: Create Swap Logical Volume 
+  community.general.lvol:
+   vg: "{{lvm_vg}}"
+   lv: "{{lvm_lv}}"
+   size: "{{lvm_swap_size}}"
+
+- name: Format the swap -mkswap 
+  ansible.builtin.command: mkswap /dev/{{lvm_vg}}/{{lvm_lv}}"
+    when: blkid_out != "swap"
+
+- name: Mount the swap
+  ansible.posix.mount:
+   path: none
+   src: "/dev/{{lvm_vg}}/{{lvm_lv}}"
+   fstype:
+   opts: default
+   state: mounted

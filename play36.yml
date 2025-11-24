@@ -1,0 +1,12 @@
+--- 
+- name: Creating a playbook to demonstrate inventory and its groups db web by using variables
+  hosts: db
+         web
+  become: true
+  become_user: root
+  tasks:
+   - name: using variables defined in inventory
+     debug:
+      msg: " printing the variables of the group {{port}}"   
+...
+#End

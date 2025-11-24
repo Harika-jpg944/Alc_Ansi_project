@@ -1,0 +1,13 @@
+#we are in main branch
+#---
+- name: Demonstrate lineinfile - example4 - insert line before the pattern match.
+  hosts: localhost
+  become: true
+  tasks:
+    - name: insert line before the match 
+      lineinfile:
+        path: /home/ansible/playbook/names.txt
+        line: "Harika is here"
+        insertbefore: ^jk
+...
+# End

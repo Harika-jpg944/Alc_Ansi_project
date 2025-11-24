@@ -1,0 +1,12 @@
+#Using an ad-hoc command, create a directory /opt/ansible_test with permissions 0755 on all servers.
+---
+- name: to create a directory 
+  hosts: all
+  become: true
+  tasks:
+  - name: create a directory in all servers
+    ansible.builtin.file:
+     path: /opt/ansible_test
+     state: directory
+     mode: '0755'
+...

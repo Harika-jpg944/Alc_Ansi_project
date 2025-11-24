@@ -1,0 +1,12 @@
+---
+- name: demonstrate variables in ansible
+ hosts: 
+   192.168.1.41
+   192.168.1.42
+   192.168.1.47 
+  
+  tasks:
+   - name: print variable values
+     debug:
+      msg: "os is: {{os}} and color is {{color}}"   
+...

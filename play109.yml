@@ -1,0 +1,13 @@
+---
+- name: Shutdown remote host
+  #hosts: localhost
+  become: true
+  tasks:
+    - name: Show maintenance message
+      ansible.builtin.debug:
+        msg: "My server is going for maintenance"
+    - name: Shutdown the system
+      ansible.builtin.command: /sbin/shutdown -h 0 now
+      ignore_errors: true
+...
+#End 

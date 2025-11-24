@@ -1,0 +1,12 @@
+- name: Generate SSH key pair for user
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Generate SSH key pair
+      community.crypto.openssh_keypair:
+        path: "/home/alclabs/.ssh/id_rsa"
+        owner: alclabs
+        group: alclabs
+        type: rsa
+        size: 2048
+        mode: '0600'

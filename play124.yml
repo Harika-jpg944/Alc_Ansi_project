@@ -1,0 +1,44 @@
+# play124.yml
+---
+- name: SSH Key management for alclabs
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: Ensure group alclabs exists
+      ansible.builtin.group:
+        name: alclabs
+        state: present
+
+    - name: Ensure user alclabs exists with correct home and group
+      ansible.builtin.user:
+        name: alclabs
+        group: alclabs
+        home: /home/alclabs
+        shell: /bin/bash
+        state: present
+        create_home: yes
+
+    - name: Ensure .ssh directory exists
+      ansible.builtin.file:
+        path: /home/alclabs/.ssh
+        state: directory
+        owner: alclabs
+        group: alclabs
+        mode: '0700'
+
+    - name: Generate SSH key pair for alclabs
+      community.crypto.openssh_keypair:
+        path: /home/alclabs/.ssh/id_rsa
+        owner: alclabs
+        group: alclabs
+        type: rsa
+        size: 2048
+        mode: '0600'
+      register: ssh_key
+
+    - name: Configure authorized key for alclabs
+      ansible.posix.authorized_key:
+        user: alclabs
+        state: present
+        key: "{{ ssh_key.public_key }}"

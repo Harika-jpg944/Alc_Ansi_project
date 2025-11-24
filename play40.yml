@@ -1,0 +1,12 @@
+---
+- name: An extra variable at run time using extra vars 
+  hosts: localhost  
+  become: true
+  gather_facts: false 
+  tasks:
+   - name: Task to create user 
+     user: 
+      name: "{{ username }}"
+      state: present
+... 
+#End
